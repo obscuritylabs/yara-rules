@@ -1,4 +1,4 @@
-rule Indicator_PyInstaller : PyInstaller
+rule Detect_PyInstaller : PyInstaller
 {
     meta:
         author                       = "Obscurity Labs LLC"
@@ -7,7 +7,7 @@ rule Indicator_PyInstaller : PyInstaller
         version                      = "1.0.0"
         yarahub_author_twitter       = "@obscuritylabs"
         yarahub_reference_md5        = "8f1c4e4a402a65f0fbe470ba0bd58bdd"
-        yarahub_uuid                 = "90626ac0-e544-4d5b-b8c3-e70a7feb2b72"
+        yarahub_uuid                 = "90626ac0-e544-4d5b-b8c3-e70a7feb2b73"
         yarahub_license              = "CC BY-NC 4.0"
         yarahub_rule_matching_tlp    = "TLP:WHITE"
         yarahub_rule_sharing_tlp     = "TLP:WHITE"
