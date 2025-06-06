@@ -1,0 +1,67 @@
+# YARA-X Configuration
+# See https://virustotal.github.io/yara-x/docs/using-cli/config-file/ for details
+
+[scan]
+# Maximum number of threads to use for scanning
+max_threads = 4
+
+# Maximum file size to scan (in bytes)
+max_file_size = 10485760  # 10MB
+
+# File types to scan (extensions without the dot)
+file_types = [
+    "exe",
+    "dll",
+    "sys",
+    "bin",
+    "dat",
+    "msi",
+    "zip",
+    "rar",
+    "7z"
+]
+
+# Directories to scan
+scan_dirs = [
+    "rules/malware",
+    "rules/packers",
+    "rules/compilers",
+    "rules/installers",
+    "rules/indicators"
+]
+
+[output]
+# Show detailed match information
+detailed = true
+
+# Show rule metadata
+show_metadata = true
+
+# Show only matching files
+matching_only = true
+
+# Output format (text, json)
+format = "text"
+
+[logging]
+# Log level (debug, info, warning, error)
+level = "info"
+
+# Log file path
+file = "yara-x.log"
+
+[modules]
+# Enable all available modules
+enable_all = true
+
+# Specific modules to enable (if enable_all is false)
+enabled = [
+    "pe",
+    "elf",
+    "macho",
+    "dotnet",
+    "hash",
+    "math",
+    "string",
+    "time"
+] 
