@@ -1,0 +1,29 @@
+version: '3'
+
+vars:
+  YARA_COMPILER: yr
+  RULES_DIR: rules
+
+tasks:
+  default:
+    cmds:
+      - task --list
+
+  install:
+    desc: Install yara-x using cargo
+    cmds:
+      - git clone https://github.com/VirusTotal/yara-x
+      - cd yara-x
+      - cargo install --path cli
+      - cd .. && rm -rf yara-x
+
+  compile:
+    desc: Compile all YARA rules
+    cmds:
+      - yr compile -o rules.yarac rules/
+
+
+  clean:
+    desc: Clean compiled rules
+    cmds:
+      - rm -rf rules.yarac

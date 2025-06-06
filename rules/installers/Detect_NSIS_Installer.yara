@@ -3,11 +3,11 @@ import "pe"
 rule Detect_NSIS_Nullsoft_Installer : NSIS
 {
     meta:
-        author                       = "Alexander Rymdeko-Harvey - Obscurity Labs LLC"
+        author                       = "Obscurity Labs LLC"
         description                  = "Detects NSIS installers by .ndata section + NSIS header string"
         date                         = "2025-06-06"
         version                      = "1.0.0"
-        yarahub_author_twitter       = "@killswitch_gui"
+        yarahub_author_twitter       = "@obscuritylabs"
         yarahub_reference_md5        = "c3fc97f82241d6d91c6d037190b3753c"
         yarahub_uuid                 = "90626ac0-e544-4d5b-b8c3-e70a7feb2b69"
         yarahub_license              = "CC BY-NC 4.0"
