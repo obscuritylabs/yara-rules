@@ -1,5 +1,3 @@
-import "pe"
-
 rule Capability_Embedded_Lua : Embedded_Lua
 {
     meta:
@@ -31,14 +29,12 @@ rule Capability_Embedded_Lua : Embedded_Lua
         $a_openmod   = /luaopen_[A-Za-z0-9_]+/ ascii nocase
 
     condition:
-        pe.is_pe and (
-            // either an env-var hook...
-            any of ($s_init, $s_path)
+        // either an env-var hook...
+        any of ($s_init, $s_path)
 
-            // ... or a module-open pattern...
-            or any of ($a_openmod)
+        // ... or a module-open pattern...
+        or any of ($a_openmod)
 
-            // ... or at least two core API functions (indicating they actually embed & use Lua)
-            or (2 of ($a_new, $a_openlibs, $a_loadbuf, $a_pcall))
-        )
+        // ... or at least two core API functions (indicating they actually embed & use Lua)
+        or (2 of ($a_new, $a_openlibs, $a_loadbuf, $a_pcall))
 } 
