@@ -32,13 +32,13 @@ rule Capability_Embedded_Lua : Embedded_Lua
 
     condition:
         pe.is_pe and (
-            // either an env-var hook…
+            // either an env-var hook...
             any of ($s_init, $s_path)
 
-            // … or a module-open pattern…
+            // ... or a module-open pattern...
             or any of ($a_openmod)
 
-            // … or at least two core API functions (indicating they actually embed & use Lua)
+            // ... or at least two core API functions (indicating they actually embed & use Lua)
             or (2 of ($a_new, $a_openlibs, $a_loadbuf, $a_pcall))
         )
 } 
