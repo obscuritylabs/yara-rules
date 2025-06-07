@@ -18,17 +18,17 @@ rule Capability_Embedded_Lua : Embedded_Lua
 
     strings:
         // standard Lua environment-variable hooks
-        $s_init      = "LUA_INIT"          ascii wide nocase
-        $s_path      = "LUA_PATH"          ascii wide nocase
+        $s_init      = "LUA_INIT"          ascii nocase
+        $s_path      = "LUA_PATH"          ascii nocase
 
         // core Lua C-API functions / library loaders
-        $a_new       = "luaL_newstate"     ascii wide nocase
-        $a_openlibs  = "luaL_openlibs"     ascii wide nocase
-        $a_loadbuf   = "luaL_loadbuffer"   ascii wide nocase
-        $a_pcall     = "lua_pcall"         ascii wide nocase
+        $a_new       = "luaL_newstate"     ascii nocase
+        $a_openlibs  = "luaL_openlibs"     ascii nocase
+        $a_loadbuf   = "luaL_loadbuffer"   ascii nocase
+        $a_pcall     = "lua_pcall"         ascii nocase
 
         // any of the standard module openers, e.g. luaopen_base, luaopen_table, etc.
-        $a_openmod   = /luaopen_[A-Za-z0-9_]+/ ascii wide nocase
+        $a_openmod   = /luaopen_[A-Za-z0-9_]+/ ascii nocase
 
     condition:
         pe.is_pe and (
