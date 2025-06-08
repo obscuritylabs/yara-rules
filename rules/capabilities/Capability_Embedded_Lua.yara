@@ -7,7 +7,7 @@ rule Capability_Embedded_Lua : Embedded_Lua
         version                      = "1.0.0"
         yarahub_author_twitter       = "@obscuritylabs"
         yarahub_reference_md5        = "73e7e49b0803fc996e313e5284e103a6"
-        yarahub_uuid                 = "90626ac0-e544-4d5b-b8c3-e70a7feb2b73"
+        yarahub_uuid                 = "90626ac0-e544-4d5b-b8c3-e70a7feb2b74"
         yarahub_license              = "CC BY-NC 4.0"
         yarahub_rule_matching_tlp    = "TLP:WHITE"
         yarahub_rule_sharing_tlp     = "TLP:WHITE"

@@ -1,15 +1,15 @@
 import "pe"
 
-rule Indicator_MiniDumpUsage : MiniDumpWriteDump
+rule Indicator_MiniDumpWriteDump : MiniDumpWriteDump
 {
     meta:
         author                       = "Obscurity Labs LLC"
         description                  = "Detects PE files and PowerShell scripts that use MiniDumpWriteDump either through direct imports or string references"
         date                         = "2025-06-06"
-        version                      = "1.0.0"
+        version                      = "1.0.1"
         yarahub_author_twitter       = "@obscuritylabs"
         yarahub_reference_md5        = "c3fc97f82241d6d91c6d037190b3753c"
-        yarahub_uuid                 = "90626ac0-e544-4d5b-b8c3-e70a7feb2b70"
+        yarahub_uuid                 = "90626ac0-e544-4d5b-b8c3-e70a7feb2b75"
         yarahub_license              = "CC BY-NC 4.0"
         yarahub_rule_matching_tlp    = "TLP:WHITE"
         yarahub_rule_sharing_tlp     = "TLP:WHITE"
