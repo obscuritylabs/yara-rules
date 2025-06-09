@@ -17,30 +17,34 @@ rule Capability_MiniFilter : MiniFilter
         mitre_attack_technique       = "T1059.011"
 
     strings:
-        // User‐mode Filter Manager API
-        $fltlib_dll     = "fltlib.dll"           wide ascii nocase
-        $filter_load    = "FilterLoad"           wide ascii nocase
-        $filter_unload  = "FilterUnload"         wide ascii nocase
-        $filter_find    = "FilterFindFirst"      wide ascii nocase
-        $filter_next    = "FilterFindNext"       wide ascii nocase
-        $filter_close   = "FilterFindClose"      wide ascii nocase
+        // Unicode (UTF-16LE) and ASCII strings for Filter Manager API
+        $s_dll        = "fltlib.dll"           wide ascii nocase
+        $s_load       = "FilterLoad"           wide ascii nocase
+        $s_unload     = "FilterUnload"         wide ascii nocase
+        $s_find1      = "FilterFindFirst"      wide ascii nocase
+        $s_findn      = "FilterFindNext"       wide ascii nocase
+        $s_close      = "FilterFindClose"      wide ascii nocase
 
-        // fltmc.exe invocations or references
-        $fltmc_exe      = "fltmc.exe"            wide ascii nocase
-        $fltmc_list     = "fltmc list"           wide ascii nocase
-        $fltmc_load     = "fltmc load"           wide ascii nocase
-        $fltmc_unload   = "fltmc unload"         wide ascii nocase
+        // Unicode and ASCII strings for fltmc.exe invocations
+        $s_fltmc_exe  = "fltmc.exe"            wide ascii nocase
+        $s_fltmc_load = "fltmc load"           wide ascii nocase
+        $s_fltmc_list = "fltmc list"           wide ascii nocase
+        $s_fltmc_unld = "fltmc unload"         wide ascii nocase
 
     condition:
-        pe.is_pe and (
-            // Direct imports of Filter Manager API
-            pe.imports("fltlib.dll", "FilterLoad") or
-            pe.imports("fltlib.dll", "FilterUnload") or
-            pe.imports("fltlib.dll", "FilterFindFirst") or
-            pe.imports("fltlib.dll", "FilterFindNext") or
+        pe.is_pe and
+        (
+            // Static imports of Filter Manager API
+            pe.imports("fltlib.dll", "FilterLoad")          or
+            pe.imports("fltlib.dll", "FilterUnload")        or
+            pe.imports("fltlib.dll", "FilterFindFirst")     or
+            pe.imports("fltlib.dll", "FilterFindNext")      or
             pe.imports("fltlib.dll", "FilterFindClose")
 
-            // Or embedding/invoking fltmc.exe
-            or any of ($fltmc_*)
+            // Or references any of the wide/unicode or ASCII API strings
+            or any of ($s_dll, $s_load, $s_unload, $s_find1, $s_findn, $s_close)
+
+            // Or embeds/invokes fltmc.exe commands
+            or any of ($s_fltmc_exe, $s_fltmc_load, $s_fltmc_list, $s_fltmc_unld)
         )
 }
