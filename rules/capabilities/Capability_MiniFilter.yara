@@ -32,19 +32,20 @@ rule Capability_MiniFilter : MiniFilter
         $s_fltmc_unld = "fltmc unload"         wide ascii nocase
 
     condition:
-        pe.is_pe and
         (
-            // Static imports of Filter Manager API
-            pe.imports("fltlib.dll", "FilterLoad")          or
-            pe.imports("fltlib.dll", "FilterUnload")        or
-            pe.imports("fltlib.dll", "FilterFindFirst")     or
-            pe.imports("fltlib.dll", "FilterFindNext")      or
-            pe.imports("fltlib.dll", "FilterFindClose")
-
-            // Or references any of the wide/unicode or ASCII API strings
-            or any of ($s_dll, $s_load, $s_unload, $s_find1, $s_findn, $s_close)
-
-            // Or embeds/invokes fltmc.exe commands
-            or any of ($s_fltmc_exe, $s_fltmc_load, $s_fltmc_list, $s_fltmc_unld)
+            // For PE files: detect direct imports of the Filter Manager API
+            pe.is_pe and (
+                pe.imports("fltlib.dll", "FilterLoad")      or
+                pe.imports("fltlib.dll", "FilterUnload")    or
+                pe.imports("fltlib.dll", "FilterFindFirst") or
+                pe.imports("fltlib.dll", "FilterFindNext")  or
+                pe.imports("fltlib.dll", "FilterFindClose")
+            )
+        )
+        or
+        (
+            // In any file (scripts, configs, text, etc.): look for the API or fltmc strings
+            any of ($s_dll, $s_load, $s_unload, $s_find1, $s_findn, $s_close,
+                    $s_fltmc_exe, $s_fltmc_load, $s_fltmc_list, $s_fltmc_unld)
         )
 }
