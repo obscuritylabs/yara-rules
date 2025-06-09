@@ -11,6 +11,7 @@ A collection of YARA rules for detecting various types of software, malware, and
 │   ├── packers/             # Rules for detecting packers and protectors
 │   ├── compilers/           # Rules for detecting compiler artifacts
 │   ├── installers/          # Rules for detecting installers
+│   ├── capabilities/        # Rules for detecting specific capabilities
 │   └── indicators/          # General IOCs and indicators
 ├── docs/                    # Documentation and usage guides
 └── tests/                   # Test files and sample binaries
@@ -81,6 +82,7 @@ For detailed information about writing rules, see the [YARA-X documentation](htt
 - **Packers**: Rules for detecting software packers and protectors
 - **Compilers**: Rules for detecting compiler artifacts and build tools
 - **Installers**: Rules for detecting various installer types
+- **Capabilities**: Rules for detecting specific software capabilities and features
 - **Indicators**: General indicators of compromise and suspicious patterns
 
 ## Contributing
